@@ -9,8 +9,11 @@ def list_repositories(user_id):
     :return: list of pairs [repo name, num of commits]
     """
     res = requests.get('https://api.github.com/users/' + user_id + '/repos').json()
-    if res == []:
-        return "User not found"
+    if not isinstance(res, list):
+        if res['message'] == "Not found":
+            return "User not found"
+        return "Invalid response from API"
+
     results = []  # used for testing
     for repo in res:
         commits = requests.get(
