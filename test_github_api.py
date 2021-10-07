@@ -2,12 +2,13 @@ import unittest
 
 from github_api import list_repositories
 
+
 class TestGithubApi(unittest.TestCase):
 
-    def testInvalidUser(self):
+    def test_invalid_user(self):
         self.assertEqual("User not found", list_repositories('InvalidUserName'))
 
-    def testCorrectOutput(self):
+    def test_correct_output(self):
         self.assertEqual(
             [
                 ['csp', 2],
